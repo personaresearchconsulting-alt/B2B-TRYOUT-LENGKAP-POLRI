@@ -44,7 +44,7 @@ a {
 .navbar {
     background-color: #ffffff;
     border-bottom: 2px solid #d1cbbe;
-    padding: 18px 24px;
+    padding: 16px 24px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -80,6 +80,34 @@ a {
     text-transform: uppercase;
 }
 
+/* TOMBOL KEMBALI DI NAVBAR */
+.btn-nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #eeebe5;
+    color: #0d1322;
+    border: 2px solid #0d1322;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-nav-back:hover {
+    background-color: #0d1322;
+    color: #ffffff;
+}
+
+.btn-nav-back svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5;
+}
+
 /* ==================================================
    MAIN CONTENT
    ================================================== */
@@ -87,9 +115,37 @@ a {
 .main-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
+    padding: 30px 20px 60px;
     width: 100%;
     flex: 1;
+}
+
+/* TOMBOL KEMBALI ATAS CONTENT */
+.top-back-bar {
+    margin-bottom: 20px;
+}
+
+.btn-text-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d1322;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-text-back:hover {
+    opacity: 0.7;
+}
+
+.btn-text-back svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
 }
 
 .page-header {
@@ -286,15 +342,23 @@ footer {
     }
 
     .brand-title {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .brand-subtitle {
-        font-size: 10px;
+        font-size: 9px;
+    }
+
+    .btn-nav-back span {
+        display: none; /* Menyembunyikan teks di layar HP, hanya menampilkan ikon panah */
+    }
+
+    .btn-nav-back {
+        padding: 8px;
     }
 
     .main-container {
-        padding: 20px 16px 40px;
+        padding: 16px 16px 40px;
     }
 
     .page-header {
@@ -364,10 +428,30 @@ footer {
             <span class="brand-title">PERSONA CLASS</span>
             <span class="brand-subtitle">Test Preparation & Selection</span>
         </div>
+
+        <!-- TOMBOL KEMBALI PADA NAVBAR -->
+        <button type="button" class="btn-nav-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>KEMBALI</span>
+        </button>
     </div>
 </header>
 
 <main class="main-container">
+
+    <!-- TOMBOL KEMBALI TEKS DI ATAS CONTENT -->
+    <div class="top-back-bar">
+        <div class="btn-text-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Kembali ke Halaman Sebelumnya</span>
+        </div>
+    </div>
 
     <section class="page-header">
         <span class="page-badge">PORTAL UJIAN</span>
@@ -454,6 +538,16 @@ footer {
 </footer>
 
 <script>
+/* Fungsi navigasi kembali */
+function goBack() {
+    if (document.referrer && window.history.length > 1) {
+        window.history.back();
+    } else {
+        // Fallback jika tidak ada riwayat (misal langsung dibuka via link)
+        window.location.href = "index.html"; 
+    }
+}
+
 /* Basic Protection - Khas Persona */
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
