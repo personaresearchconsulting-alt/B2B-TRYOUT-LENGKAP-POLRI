@@ -538,17 +538,19 @@ footer {
 </footer>
 
 <script>
-/* Fungsi navigasi kembali */
+/* Fungsi navigasi kembali yang diperbaiki */
 function goBack() {
-    if (document.referrer && window.history.length > 1) {
+    // Memeriksa riwayat navigasi tab saat ini
+    if (window.history.length > 1) {
         window.history.back();
     } else {
-        // Fallback jika tidak ada riwayat (misal langsung dibuka via link)
-        window.location.href = "index.html"; 
+        // Fallback jika dibuka langsung tanpa riwayat / di tab baru
+        // Ganti "dashboard.html" dengan nama file/link halaman utama sistem kamu jika ada
+        window.location.href = "dashboard.html"; 
     }
 }
 
-/* Basic Protection - Khas Persona */
+/* Basic Protection - Persona */
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
 });
